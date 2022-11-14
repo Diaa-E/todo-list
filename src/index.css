@@ -1,3 +1,86 @@
+@font-face {
+    font-family: "Sabila";
+    src: url("./fonts/Sabila.otf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("./fonts/Roboto-Thin.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("./fonts/Roboto-Bold.ttf");
+    font-weight: bold;
+    font-style: normal;
+}
+
+:root{
+    --font-highlight : #2f2666;
+    --font-greyed: #767676;
+    --font-dark: #000000;
+    --valid: #8bbc77;
+    --warning: #f16872;
+    --background-button: #9481ff;
+    --background: #645a92;
+    --background-container: #d5ceff;
+    --background-task: #e9e5ff;
+
+}
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    appearance: none;
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+}
+
 body{
-    background-color: purple;
+    background: url("./images/background-purple.svg");
+    background-size: cover;
+}
+
+.main-container{
+    display: grid;
+    grid-template-columns: 1fr 6fr ;
+    grid-template-rows: 1fr 7fr;
+    min-width: 100vw;
+    min-height: 100vh;
+    place-items: stretch;
+    place-content: center;
+}
+
+.side-menu{
+    background-color: var(--background-container);
+    grid-area: 1 / 1 / 3 / 2;
+    display: grid;
+    grid-template-rows: 1fr 1fr 3fr 1fr;
+    padding: 10px;
+    gap: 20px;
+}
+
+.user{
+    display: flex;
+    flex-direction: column;
+    grid-area: 2 / 1 / 3 / 2;
+    place-items: center;
+    color: var(--background-button);
+    font-size: 16px;
+    text-align: center;
+}
+
+#logo{
+    grid-area: 1 / 1 / 2 / 2;
+    width: 150px;
+}
+
+#user-avatar{
+    width: 70px;
+    border-radius: 50%;
 }
