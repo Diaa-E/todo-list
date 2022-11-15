@@ -24,8 +24,14 @@
     --font-greyed: #767676;
     --font-dark: #000000;
     --valid: #8bbc77;
+    --valid-hover:#a2c993;;
+    --valid-active: #678d58;
     --warning: #f16872;
-    --background-button: #9481ff;
+    --warning-hover:#e48d93;
+    --warning-active: #b45a60;
+    --button: #9481ff;
+    --button-hover:#b0a4f0;
+    --button-active: #6c63a1;
     --background: #645a92;
     --background-container: #d5ceff;
     --background-task: #e9e5ff;
@@ -67,17 +73,28 @@ body{
     gap: 10px;
 }
 
-.button{
+.project-content{
     display: grid;
-    grid-template-columns: 70px 1fr;
-    font-size: 20px;
-    place-items: center;
+    grid-template-columns: repeat(auto-fit, 500px);
+    grid-auto-rows: min-content;
+    padding: 40px;
+    gap: 40px;
+    place-items: stretch;
+}
+
+#project-title{
     color: var(--background-container);
-    background-color: var(--background-button);
+    font-weight: bold;
+    font-size: 42px;
+    grid-area: 1 / 1 / 2 / -1;
+}
+
+.card{
     padding: 10px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
+    min-height: 400px;
+    background-color: var(--background-container);
+    border-radius: 10px;
+    box-shadow: 10px 10px 25px -12px var(--font-dark);
 }
 
 .projects{
@@ -88,7 +105,7 @@ body{
     gap: 5px;
     list-style: none;
     text-align: center;
-    color: var(--background-button);
+    color: var(--button);
     font-size: 20px;
 }
 
@@ -102,12 +119,40 @@ body{
     color: var(--background);
 }
 
+.button{
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    font-size: 20px;
+    place-items: center;
+    color: var(--background-container);
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.button-regular{
+    background-color: var(--button);
+}
+
+.button-regular:hover{
+    background-color: var(--button-hover);
+}
+
+.button-regular:active{
+    background-color: var(--button-active);
+}
+
 .button-danger{
     background-color: var(--warning);
 }
 
-button:active{
-    filter: brightness(70%);
+.button-danger:hover{
+    background-color: var(--warning-hover);
+}
+
+.button-danger:active{
+    background-color: var(--warning-active);
 }
 
 .project-controls{
@@ -132,7 +177,7 @@ button:active{
     text-align: center;
     align-self: center;
     font-size: 32px;
-    color: var(--background-button);
+    color: var(--button);
 }
 
 #icon{
