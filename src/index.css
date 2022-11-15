@@ -80,6 +80,28 @@ body{
     cursor: pointer;
 }
 
+.projects{
+    margin-top: 20px;
+    display: grid;
+    place-items: stretch;
+    grid-auto-rows: min-content;
+    gap: 5px;
+    list-style: none;
+    text-align: center;
+    color: var(--background-button);
+    font-size: 20px;
+}
+
+.projects li{
+    padding: 5px;
+    cursor: pointer;
+}
+
+.projects-active{
+    background-color: var(--background-task);
+    color: var(--background);
+}
+
 .button-danger{
     background-color: var(--warning);
 }
