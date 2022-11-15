@@ -7,11 +7,11 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.html$/,
+                test: /\.html$/i,
                 use: ["html-loader"],
             },
-            {
-                test: /\.(svg|png|jpg|jpeg|gif)$/,
+            /*{
+                test: /\.(svg|png|jpg|jpeg|gif)$/i,
                 use: {
                     loader: "file-loader",
                     options: {
@@ -19,7 +19,7 @@ module.exports = {
                         outputPath: "images" ,
                     },
                 }
-            }
+            },*/
         ],
     },
     plugins: [
