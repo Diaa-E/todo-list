@@ -68,10 +68,10 @@ body{
 }
 
 .button{
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    font-size: 24px;
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    font-size: 20px;
+    place-items: center;
     color: var(--background-container);
     background-color: var(--background-button);
     padding: 10px;
