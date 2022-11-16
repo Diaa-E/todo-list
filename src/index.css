@@ -161,6 +161,14 @@ body{
     grid-area: 4 / 1 / 5 / 2;
     gap: 10px;
 }
+
+.card-title{
+    font-family: "Sabila";
+    text-align: center;
+    color: var(--font-highlight);
+    font-size: 100px;
+}
+
 #logo{
     grid-area: 1 / 1 / 2 / 2;
     width: 150px;
