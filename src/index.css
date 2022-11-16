@@ -28,7 +28,7 @@
 
 :root{
     --font-highlight : #2f2666;
-    --font-greyed: #767676;
+    --font-greyed: #838383;
     --font-dark: #414141;
     --valid: #8bbc77;
     --valid-hover:#a2c993;;
@@ -61,8 +61,6 @@ body{
 .main-container{
     display: grid;
     grid-template-columns: 1fr 5fr;
-    min-height: 100vh;
-    min-width: 100vw;
 }
 
 .side-menu{
@@ -180,11 +178,10 @@ body{
     font-size: 100px;
 }
 
-.task-todo{
+.task{
     display: grid;
     grid-template-columns: 1fr 6fr 1fr;
     grid-template-rows: repeat(3, min-content);
-    background-color: var(--background-task);
     min-height: 100px;
     padding: 10px;
     gap: 20px;
@@ -193,21 +190,53 @@ body{
     box-shadow: 5px 5px 12px -12px var(--font-dark);
 }
 
+.task-todo{
+    background-color: var(--background-task);
+}
+
+.task-done{
+    background-color: var(--background-containerk);
+    border: 2px var(--font-greyed) solid ;
+}
+
 .task-title{
-    color: var(--font-dark);
     font-size: 32px;
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.task-title-todo{
+    color: var(--font-dark);
+}
+
+.task-title-done{
+    color: var(--font-greyed);
 }
 
 .task-details{
     font-size: 15px;
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+.task-details-todo{
+    color: var(--font-dark);
+}
+
+.task-details-done{
     color: var(--font-greyed);
 }
 
 .task-date{
     grid-area: 3 / 1 / 4 / 4;
-    color: var(--background);
     font-size: 16px;
     justify-self: flex-end;
+}
+
+.task-date-todo{
+    color: var(--background);
+}
+
+.task-date-done{
+    color: var(--font-greyed);
 }
 
 #logo{
@@ -231,6 +260,9 @@ body{
 
 .icon{
     width: 30px;
+}
+
+.icon-button{
     filter: invert(90%);
 }
 
@@ -262,4 +294,8 @@ body{
 #edit-task{
     background: url(./icons/edit.svg);
     background-size: cover;
+}
+
+#tick{
+    grid-area: 1 / 3 / 2 / 4
 }
