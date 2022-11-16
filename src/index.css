@@ -29,7 +29,7 @@
 :root{
     --font-highlight : #2f2666;
     --font-greyed: #767676;
-    --font-dark: #000000;
+    --font-dark: #414141;
     --valid: #8bbc77;
     --valid-hover:#a2c993;;
     --valid-active: #678d58;
@@ -97,7 +97,10 @@ body{
 }
 
 .card{
-    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 30px 30px 30px;
+    gap: 20px;
     min-height: 400px;
     background-color: var(--background-container);
     border-radius: 10px;
@@ -177,6 +180,36 @@ body{
     font-size: 100px;
 }
 
+.task-todo{
+    display: grid;
+    grid-template-columns: 1fr 6fr 1fr;
+    grid-template-rows: repeat(3, min-content);
+    background-color: var(--background-task);
+    min-height: 100px;
+    padding: 10px;
+    gap: 20px;
+    place-content: center;
+    place-items: center;
+    box-shadow: 5px 5px 12px -12px var(--font-dark);
+}
+
+.task-title{
+    color: var(--font-dark);
+    font-size: 32px;
+}
+
+.task-details{
+    font-size: 15px;
+    color: var(--font-greyed);
+}
+
+.task-date{
+    grid-area: 3 / 1 / 4 / 4;
+    color: var(--background);
+    font-size: 16px;
+    justify-self: flex-end;
+}
+
 #logo{
     grid-area: 1 / 1 / 2 / 2;
     width: 150px;
@@ -196,7 +229,37 @@ body{
     color: var(--button);
 }
 
-#icon{
+.icon{
     width: 30px;
     filter: invert(90%);
+}
+
+.button-task{
+    width: 30px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+}
+
+.button-task:hover{
+    filter: brightness(130%);
+}
+
+.button-task:active{
+    filter: brightness(70%);
+}
+
+#complete-task{
+    background: url(./icons/done_circle.svg);
+    background-size: cover;
+}
+
+#remove-task{
+    background: url(./icons/remove.svg);
+    background-size: cover;
+}
+
+#edit-task{
+    background: url(./icons/edit.svg);
+    background-size: cover;
 }

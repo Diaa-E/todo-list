@@ -24,11 +24,11 @@
             </ul>
             <div class="project-controls">
                 <button class="button button-danger">
-                    <img id="icon" src="./icons/del.svg" alt="Delete icon">
+                    <img class="icon" src="./icons/del.svg" alt="Delete icon">
                     Delete
                 </button>
                 <button class="button button-regular">
-                    <img id="icon" src="./icons/add.svg" alt="Delete icon">
+                    <img class="icon" src="./icons/add.svg" alt="Delete icon">
                     New Project
                 </button>
             </div>
@@ -40,6 +40,31 @@
             </h1>
             <div class="card">
                 <h1 class="card-title">To do</h1>
+                <button class="button button-regular">
+                    <img class="icon" src="./icons/add.svg" alt="Delete icon">
+                    New Task
+                </button>
+                <div data-index="0" class="task-todo">
+                    <button class="button-task" id="complete-task"></button>
+                    <h1 class="task-title">Task 1</h1>
+                    <button class="button-task" id="remove-task"></button>
+                    <button class="button-task" id="edit-task"></button>
+                    <p class="task-details">Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                        Vitae distinctio quia consectetur laboriosam commodi impedit
+                        natus eligendi, magnam reiciendis itaque? Quod inventore quia,
+                        saepe quidem ipsa eveniet aspernatur tenetur voluptates?
+                    </p>
+                    <h1 class="task-date">Thursday, 12/4/2050, 3:14</h1>
+                </div>
+                <div data-index="1" class="task-todo">
+                    <button class="button-task" id="complete-task"></button>
+                    <h1 class="task-title">Task 2</h1>
+                    <button class="button-task" id="remove-task"></button>
+                    <button class="button-task" id="edit-task"></button>
+                    <p class="task-details">Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                    </p>
+                    <h1 class="task-date">Thursday, 12/4/2050, 3:14</h1>
+                </div>
             </div>
             <div class="card">
                 <h1 class="card-title">Done</h1>
