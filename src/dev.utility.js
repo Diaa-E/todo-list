@@ -2,7 +2,6 @@
 
 import { Project } from "./projects";
 import { Task } from "./tasks";
-
 //for development
 function generateRandomText(maxLength)
 {

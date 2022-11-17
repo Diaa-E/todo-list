@@ -1,15 +1,15 @@
-"use strict"
+"use strict";
 
 export function updateProjects(projects, selectFirst = true)
 {
-    let currentProject = 0
+    let currentProject = 0;
 
     if (!selectFirst) currentProject = +document.querySelector(".projects-active").getAttribute("data-index");
     
     const parent = document.querySelector("#projects");
     parent.innerHTML = "";
 
-    const listItems = []
+    const listItems = [];
     
     for (let i = 0; i < projects.length; i++)
     {
@@ -19,7 +19,7 @@ export function updateProjects(projects, selectFirst = true)
 
         listItems[i].addEventListener("click", (e) => {
 
-            selectProject(+e.target.getAttribute("data-index"));
+            selectProject(+e.target.getAttribute("data-index"), projects[+e.target.getAttribute("data-index")].getTitle());
         });
     }
 
@@ -31,7 +31,7 @@ export function updateProjects(projects, selectFirst = true)
     selectProject(currentProject);
 }
 
-function selectProject(projectIndex)
+function selectProject(projectIndex, title)
 {
     //the class added to selected item
     const selectedClass = "projects-active";
@@ -45,6 +45,7 @@ function selectProject(projectIndex)
 
     //add selection to current item
     projectsList[projectIndex].classList.add(selectedClass);
+    updateProjectTitle(title);
 }
 
 function createDomElement(elementTag = "div")
@@ -64,4 +65,9 @@ function setElementAttributes(element, ...attributesAndValues)
 function setElementText(element, value)
 {
     element.innerText = value;
+}
+
+function updateProjectTitle(newTitle)
+{
+    setElementText(document.querySelector("#project-title"), newTitle);
 }
