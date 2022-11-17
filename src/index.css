@@ -307,6 +307,48 @@ body{
     filter: brightness(70%);
 }
 
+.prompt-form{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-auto-rows: min-content;
+    gap: 10px;
+}
+
+.prompt-form legend{
+    font-family: "sabila", sans-serif;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 72px;
+    grid-area: 1 / 1 / 2 / -1;
+    text-align: center;
+    color: var(--font-highlight);
+}
+
+.prompt-form label{
+    font-size: 24px;
+    color: var(--button);
+}
+
+.prompt-field{
+    resize: none;
+    font-size: 16px;
+    background-color: var(--background-task);
+    border: none;
+    padding: 5px;
+}
+
+.prompt-field:focus{
+    background-color: var(--button-hover);
+}
+
+.prompt-controls{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    grid-area: 5 / 1 / 6 / -1;
+}
+
 #complete-task{
     background: url(./icons/done_circle.svg);
     background-size: cover;
