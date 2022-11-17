@@ -2,9 +2,9 @@
 
 export function updateProjects(projects, selectFirst = true)
 {
-    let currentProject = 0;
+    let currentProjectIndex = 0;
 
-    if (!selectFirst) currentProject = +document.querySelector(".projects-active").getAttribute("data-index");
+    if (!selectFirst) currentProjectIndex = +document.querySelector(".projects-active").getAttribute("data-index");
     
     const parent = document.querySelector("#projects");
     parent.innerHTML = "";
@@ -19,7 +19,8 @@ export function updateProjects(projects, selectFirst = true)
 
         listItems[i].addEventListener("click", (e) => {
 
-            selectProject(+e.target.getAttribute("data-index"), projects[+e.target.getAttribute("data-index")].getTitle());
+            selectProject(+e.target.getAttribute("data-index"));
+            updateProjectTitle(projects[+e.target.getAttribute("data-index")].getTitle());
         });
     }
 
@@ -28,10 +29,11 @@ export function updateProjects(projects, selectFirst = true)
         parent.appendChild(item);
     });
 
-    selectProject(currentProject, projects[currentProject].getTitle());
+    selectProject(currentProjectIndex, projects[currentProjectIndex].getTitle());
+    updateProjectTitle(projects[currentProjectIndex].getTitle());
 }
 
-function selectProject(projectIndex, title)
+function selectProject(projectIndex)
 {
     //the class added to selected item
     const selectedClass = "projects-active";
@@ -45,7 +47,6 @@ function selectProject(projectIndex, title)
 
     //add selection to current item
     projectsList[projectIndex].classList.add(selectedClass);
-    updateProjectTitle(title);
 }
 
 function createDomElement(elementTag = "div")
