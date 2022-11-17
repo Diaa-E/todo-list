@@ -1,6 +1,6 @@
 "use strict";
 
-export function updateProjects(projects, selectFirst = true)
+export function updateScreen(projects, selectFirst = true)
 {
     let currentProjectIndex = 0;
 
@@ -21,6 +21,7 @@ export function updateProjects(projects, selectFirst = true)
 
             selectProject(+e.target.getAttribute("data-index"));
             updateProjectTitle(projects[+e.target.getAttribute("data-index")].getTitle());
+            updateTasks(projects[+e.target.getAttribute("data-index")])
         });
     }
 
@@ -31,6 +32,7 @@ export function updateProjects(projects, selectFirst = true)
 
     selectProject(currentProjectIndex, projects[currentProjectIndex].getTitle());
     updateProjectTitle(projects[currentProjectIndex].getTitle());
+    updateTasks(projects[currentProjectIndex]);
 }
 
 function selectProject(projectIndex)
@@ -71,4 +73,58 @@ function setElementText(element, value)
 function updateProjectTitle(newTitle)
 {
     setElementText(document.querySelector("#project-title"), newTitle);
+}
+
+function addClasses(element, ...cssClasses)
+{
+    cssClasses.forEach(cssClass => {
+
+        element.classList.add(cssClass);
+    });
+}
+
+function updateTasks(project)
+{
+    const parent = document.querySelector("#todo");
+    parent.innerHTML = "";
+
+    for (let i = 0; i < project.getPendingTasks().length; i++)
+    {
+        const divTask = createDomElement("div");
+        addClasses(divTask, "task", "task-todo");
+
+        const btnComplete = createDomElement("button");
+        setElementAttributes(btnComplete, "id", "complete-task");
+        addClasses(btnComplete, "button-task");
+
+        const hTitle = createDomElement("h1");
+        addClasses(hTitle, "task-title", "task-title-todo");
+        setElementText(hTitle, project.getPendingTasks()[i].getTitle());
+
+        const btnRemove = createDomElement("button");
+        setElementAttributes(btnRemove, "id", "remove-task");
+        addClasses(btnRemove, "button-task");
+
+        const btnEdit = createDomElement("button");
+        setElementAttributes(btnEdit, "id", "edit-task");
+        addClasses(btnEdit, "button-task");
+
+        const pDetails = createDomElement("p");
+        addClasses(pDetails, "task-details", "task-details-todo");
+        setElementText(pDetails, project.getPendingTasks()[i].getDetails());
+
+        const hDate = createDomElement("h1");
+        addClasses(hDate, "task-date", "task-date-todo");
+        setElementText(hDate, project.getPendingTasks()[i].getDue());
+
+        divTask.append(
+            btnComplete,
+            hTitle,
+            btnRemove,
+            btnEdit,
+            pDetails,
+            hDate)
+
+        parent.appendChild(divTask);
+    }
 }
