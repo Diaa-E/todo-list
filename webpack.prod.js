@@ -37,5 +37,6 @@ module.exports = merge(common, {
         path: path.resolve(__dirname, "dist"),
         //resolves an absolute path to second argument
         //__dirname is the current directory name
+        assetModuleFilename: 'assets/[name][hash][ext][query]'
     },
 });

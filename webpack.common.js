@@ -10,16 +10,14 @@ module.exports = {
                 test: /\.html$/i,
                 use: ["html-loader"],
             },
-            /*{
+            {
                 test: /\.(svg|png|jpg|jpeg|gif)$/i,
-                use: {
-                    loader: "file-loader",
-                    options: {
-                        name: "[name].[hash].[ext]",
-                        outputPath: "images" ,
-                    },
-                }
-            },*/
+                type: 'asset/resource',
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/i,
+                type: 'asset/resource',
+            },
         ],
     },
     plugins: [
