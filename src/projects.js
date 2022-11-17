@@ -1,10 +1,11 @@
 "use strict";
 
-import { addToCollection } from "./utility";
+import { addToCollection, removeFromCollection } from "./utility";
 
 export function Project(name)
 {
-    const tasks = [];
+    const todo = [];
+    const done = [];
     let title
     const validNamePattern = /^[a-z](?:_?[a-z0-9]+)*$/gi;
 
@@ -19,7 +20,8 @@ export function Project(name)
         title = "New Project"
     }
 
-    const getTasks = () => tasks;
+    const getPendingTasks = () => todo;
+    const getDoneTasks = () => done;
     const getTitle = () => title;
 
     const setTitle = (newTitle) => {
@@ -32,13 +34,27 @@ export function Project(name)
 
     const addTask = (task) => {
 
-        addToCollection(task, tasks);
+        addToCollection(task, todo);
     };
 
+    const completeTask = (task, taskIndex) => {
+
+        addToCollection(task, done);
+        removeFromCollection(taskIndex, todo);
+    };
+
+    const removeTask = (taskIndex) => {
+
+        removeFromCollection(taskIndex, todo);
+    }
+
     return {
-        getTasks,
+        getPendingTasks,
+        getDoneTasks,
         getTitle,
         setTitle,
-        addTask
+        addTask,
+        completeTask,
+        removeTask
     };
 };
