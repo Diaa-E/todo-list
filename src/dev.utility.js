@@ -38,7 +38,7 @@ export function generateRandomTasks(projects, maxTasks)
     {    
         for (let i = 0; i < Math.ceil(Math.random() * maxTasks); i++)
         {
-            projects[j].addTask((Task(generateRandomText(10), generateRandomText(20), generateRandomProjects(10), 2)));
+            projects[j].addTask((Task(generateRandomText(10), generateRandomText(20), generateRandomText(10), 2)));
         }
     }
 }
