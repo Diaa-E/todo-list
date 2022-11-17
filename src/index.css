@@ -40,6 +40,7 @@
     --button-hover:#b0a4f0;
     --button-active: #6c63a1;
     --background: #645a92;
+    --background-overlay: #645a9298;
     --background-container: #d5ceff;
     --background-task: #e9e5ff;
 
@@ -137,6 +138,18 @@ body{
     border-radius: 5px;
     border: none;
     cursor: pointer;
+}
+
+.button-valid{
+    background-color: var(--valid);
+}
+
+.button-valid:hover{
+    background-color: var(--valid-hover);
+}
+
+.button-valid:active{
+    background-color: var(--valid-active);
 }
 
 .button-regular{
@@ -237,6 +250,19 @@ body{
 
 .task-date-done{
     color: var(--font-greyed);
+}
+
+.prompt-background{
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    place-content: center;
+    place-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--background-overlay);
+    z-index: 1;
 }
 
 #logo{

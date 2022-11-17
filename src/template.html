@@ -78,5 +78,32 @@
             </div>
         </div>
     </div>
+
+    <div class="prompt-background">
+        <div class="card">
+            <form action="">
+                <legend>Action</legend>
+
+                <label for="taskTitle">Title</label>
+                <input id="taskTitle" name="taskTitle" type="text">
+
+                <label for="taskDetails">Details</label>
+                <textarea name="taskDEtails" id="taskDetails" cols="30" rows="10" ></textarea>
+
+                <label for="taskDate">Due</label>
+                <input type="datetime-local" name="taskDate" id="taskDate">
+
+                <button class="button button-danger">
+                    <img class="icon icon-button" src="./icons/remove_black.svg" alt="Cancel icon">
+                    Cancel
+                </button>
+
+                <button class="button button-valid">
+                    <img class="icon icon-button" src="./icons/save.svg" alt="Save icon">
+                    Save
+                </button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
