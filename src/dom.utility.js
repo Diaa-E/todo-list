@@ -28,7 +28,7 @@ export function updateProjects(projects, selectFirst = true)
         parent.appendChild(item);
     });
 
-    selectProject(currentProject);
+    selectProject(currentProject, projects[currentProject].getTitle());
 }
 
 function selectProject(projectIndex, title)
