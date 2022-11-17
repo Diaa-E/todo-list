@@ -7,7 +7,7 @@ export function Project(name)
     const todo = [];
     const done = [];
     let title
-    const validNamePattern = /^[a-z](?:_?[a-z0-9]+)*$/gi;
+    const validNamePattern = /^[a-z](?:\s?[a-z0-9]+)*$/gi;
 
     //name must start with a letter
     //numbers and underscores are legal

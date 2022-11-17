@@ -6,7 +6,7 @@ export function Task(taskTitle, taskDetails, taskDueDate, taskPriority = 0)
     const details = taskDetails;
     const due = taskDueDate;
     const priority = taskPriority;
-    const validNamePattern = /^[a-z](?:_?[a-z0-9]+)*$/gi;
+    const validNamePattern = /^[a-z](?:\s?[a-z0-9]+)*$/gi;
 
     if (validNamePattern.test(taskTitle))
     {
