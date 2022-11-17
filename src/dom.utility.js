@@ -1,7 +1,14 @@
 "use strict"
 
-export function updateProjects(projects)
+export function updateProjects(projects, selectFirst = true)
 {
+    let currentProject = 0
+
+    if (!selectFirst)
+    {
+        currentProject = +document.querySelector(".projects-active").getAttribute("data-index");
+    }
+
     const parent = document.querySelector("#projects");
     parent.innerHTML = "";
 
@@ -11,6 +18,8 @@ export function updateProjects(projects)
 
         parent.appendChild(item);
     });
+
+    selectProject(currentProject);
 }
 
 function createProjectsList(projects, typeOfElements)
