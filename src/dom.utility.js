@@ -4,15 +4,24 @@ export function updateProjects(projects, selectFirst = true)
 {
     let currentProject = 0
 
-    if (!selectFirst)
-    {
-        currentProject = +document.querySelector(".projects-active").getAttribute("data-index");
-    }
-
+    if (!selectFirst) currentProject = +document.querySelector(".projects-active").getAttribute("data-index");
+    
     const parent = document.querySelector("#projects");
     parent.innerHTML = "";
 
-    const listItems = createProjectsList(projects, "li");
+    const listItems = []
+    
+    for (let i = 0; i < projects.length; i++)
+    {
+        listItems.push(createDomElement("li"));
+        setElementAttributes(listItems[i], "data-index", `${i}`);
+        setElementText(listItems[i], projects[i].getTitle());
+
+        listItems[i].addEventListener("click", (e) => {
+
+            selectProject(+e.target.getAttribute("data-index"));
+        });
+    }
 
     listItems.forEach(item => {
 
@@ -20,24 +29,6 @@ export function updateProjects(projects, selectFirst = true)
     });
 
     selectProject(currentProject);
-}
-
-function createProjectsList(projects, typeOfElements)
-{
-    const elementsList = [];
-
-    for (let i = 0; i < projects.length; i++)
-    {
-        elementsList.push(document.createElement(typeOfElements));
-        elementsList[i].setAttribute("data-index", `${i}`);
-        elementsList[i].innerText = projects[i].getTitle();
-
-        elementsList[i].addEventListener("click", (e) => {
-            selectProject(+e.target.getAttribute("data-index"));
-        });
-    };
-
-    return elementsList;
 }
 
 function selectProject(projectIndex)
@@ -54,4 +45,23 @@ function selectProject(projectIndex)
 
     //add selection to current item
     projectsList[projectIndex].classList.add(selectedClass);
+}
+
+function createDomElement(elementTag = "div")
+{   
+    return document.createElement(elementTag);
+}
+
+function setElementAttributes(element, ...attributesAndValues)
+{
+    //each attribute is passed as a string followed by its value
+    for (let i = 0; i < attributesAndValues.length ; i++)
+    {
+        element.setAttribute(attributesAndValues[i], attributesAndValues[++i]);
+    }
+}
+
+function setElementText(element, value)
+{
+    element.innerText = value;
 }
