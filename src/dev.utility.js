@@ -2,6 +2,7 @@
 
 import { Project } from "./projects";
 import { Task } from "./tasks";
+
 //for development
 function generateRandomText(maxLength)
 {
@@ -27,4 +28,17 @@ export function generateRandomProjects(maxProjects)
     }
 
     return newProjects;
+}
+
+export function generateRandomTasks(projects, maxTasks)
+{
+    const newTasks = [];
+
+    for (let j = 0; j < projects.length; j++)
+    {    
+        for (let i = 0; i < Math.ceil(Math.random() * maxTasks); i++)
+        {
+            projects[j].addTask((Task(generateRandomText(10), generateRandomText(100), generateRandomProjects(10), 2)));
+        }
+    }
 }
