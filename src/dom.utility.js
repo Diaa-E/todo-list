@@ -2,18 +2,18 @@
 
 export function updateProjects(projects)
 {
-    const ulProjects = document.querySelector("#projects");
-    ulProjects.innerHTML = "";
+    const parent = document.querySelector("#projects");
+    parent.innerHTML = "";
 
-    const listItems = createProjectElements(projects, "li");
+    const listItems = createProjectsList(projects, "li");
 
     listItems.forEach(item => {
 
-        ulProjects.appendChild(item);
+        parent.appendChild(item);
     });
 }
 
-function createProjectElements(projects, typeOfElements)
+function createProjectsList(projects, typeOfElements)
 {
     const elementsList = [];
 
@@ -22,7 +22,27 @@ function createProjectElements(projects, typeOfElements)
         elementsList.push(document.createElement(typeOfElements));
         elementsList[i].setAttribute("data-index", `${i}`);
         elementsList[i].innerText = projects[i].getTitle();
+
+        elementsList[i].addEventListener("click", (e) => {
+            selectProject(+e.target.getAttribute("data-index"));
+        });
     };
 
     return elementsList;
+}
+
+function selectProject(projectIndex)
+{
+    //the class added to selected item
+    const selectedClass = "projects-active";
+
+    const projectsList = document.querySelectorAll("#projects li");
+
+    //remove selection from all items
+    projectsList.forEach(project => {
+        project.classList.remove(selectedClass);
+    });
+
+    //add selection to current item
+    projectsList[projectIndex].classList.add(selectedClass);
 }
