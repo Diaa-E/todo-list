@@ -8,5 +8,5 @@ import "./index.css";
 
 const projects = generateRandomProjects(20);
 
-updateScreen(projects);
 generateRandomTasks(projects, 10);
+updateScreen(projects);
