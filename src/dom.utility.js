@@ -96,6 +96,7 @@ function updateTasks(project)
         const btnComplete = createDomElement("button");
         setElementAttributes(btnComplete, "id", "complete-task");
         addClasses(btnComplete, "button-task");
+        setElementAttributes(btnComplete, "data-index", `${i}`);
 
         const hTitle = createDomElement("h1");
         addClasses(hTitle, "task-title", "task-title-todo");
@@ -104,10 +105,12 @@ function updateTasks(project)
         const btnRemove = createDomElement("button");
         setElementAttributes(btnRemove, "id", "remove-task");
         addClasses(btnRemove, "button-task");
+        setElementAttributes(btnRemove, "data-index", `${i}`);
 
         const btnEdit = createDomElement("button");
         setElementAttributes(btnEdit, "id", "edit-task");
         addClasses(btnEdit, "button-task");
+        setElementAttributes(btnEdit, "data-index", `${i}`);
 
         const pDetails = createDomElement("p");
         addClasses(pDetails, "task-details", "task-details-todo");
