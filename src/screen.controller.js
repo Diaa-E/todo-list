@@ -120,6 +120,13 @@ export function screenController()
             addClasses(btnComplete, "button-task");
             setElementAttributes(btnComplete, "data-index", `${i}`);
 
+            btnComplete.addEventListener("click", (e) => {
+
+                const selectedTask = +e.target.parentNode.getAttribute("data-index")
+                currentProject.completeTask(currentProject.getPendingTasks()[selectedTask], selectedTask);
+                updateScreen();
+            });
+
             const hTitle = createDomElement("h1");
             addClasses(hTitle, "task-title", "task-title-todo");
             setElementText(hTitle, currentTask.getTitle());
