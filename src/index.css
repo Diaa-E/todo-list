@@ -288,6 +288,7 @@ body{
 
 .icon{
     width: 30px;
+    height: 30px;
 }
 
 .icon-button{
@@ -367,10 +368,13 @@ body{
 }
 
 #tick{
-    grid-area: 1 / 3 / 2 / 4
+    grid-area: 1 / 3 / 2 / 4;
+    background: url("./icons/done.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
-#todo{
+#todo, #complete{
     display: flex;
     flex-direction: column;
     gap: 10px;
