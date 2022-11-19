@@ -273,7 +273,7 @@ export function screenController()
         setElementAttributes(divCancel, "id", "cancel");
 
         btnCancel.appendChild(divCancel);
-        setElementText(btnCancel, "Cancel");
+        btnCancel.innerHTML += "Cancel"; //Avoid removing the appended div
 
         const btnSave = createDomElement("button");
         addClasses(btnSave, "button", "button-valid");
@@ -283,7 +283,7 @@ export function screenController()
         setElementAttributes(divSave, "id", "save");
 
         btnSave.appendChild(divSave);
-        setElementText(btnSave, "Save");
+        btnSave.innerHTML += "Save";
 
         divControls.append(btnCancel, btnSave);
         formElements.push(divControls);
