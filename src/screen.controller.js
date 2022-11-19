@@ -112,13 +112,13 @@ export function screenController()
         {
             const divTask = createDomElement("div");
             addClasses(divTask, "task", "task-todo");
+            setElementAttributes(divTask, "data-index", i)
 
             const currentTask = currentProject.getPendingTasks()[i];
 
             const btnComplete = createDomElement("button");
             setElementAttributes(btnComplete, "id", "complete-task");
             addClasses(btnComplete, "button-task");
-            setElementAttributes(btnComplete, "data-index", `${i}`);
 
             btnComplete.addEventListener("click", (e) => {
 
@@ -134,7 +134,6 @@ export function screenController()
             const btnRemove = createDomElement("button");
             setElementAttributes(btnRemove, "id", "remove-task");
             addClasses(btnRemove, "button-task");
-            setElementAttributes(btnRemove, "data-index", `${i}`);
 
             const btnEdit = createDomElement("button");
             setElementAttributes(btnEdit, "id", "edit-task");
