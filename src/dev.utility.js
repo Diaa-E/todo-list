@@ -32,13 +32,13 @@ export function generateRandomProjects(maxProjects)
 
 export function generateRandomTasks(projects, maxTasks)
 {
-    const newTasks = [];
-
     for (let j = 0; j < projects.length; j++)
     {    
         for (let i = 0; i < Math.ceil(Math.random() * maxTasks); i++)
         {
             projects[j].addTask((Task(generateRandomText(10), generateRandomText(20), generateRandomText(10), 2)));
         }
+
+        projects[j].completeTask(projects[j].getPendingTasks()[0], 0);
     }
 }

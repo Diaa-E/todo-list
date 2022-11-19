@@ -9,5 +9,5 @@ export function addToCollection(item, collection)
 //remove an item from a given array
 export function removeFromCollection(itemIndex, collection)
 {
-    collection.splice(index, 1);
+    collection.splice(itemIndex, 1);
 };
