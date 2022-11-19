@@ -20,13 +20,13 @@ export function screenController()
         currentProject = projects[currentProjectIndex];
 
         updateScreen();
-    }
+    };
 
     const setCurrentProject = (newProjectIndex) => {
 
         currentProjectIndex = newProjectIndex;
         currentProject = projects[currentProjectIndex];
-    }
+    };
 
     const updateScreen = () => {
 
@@ -44,7 +44,8 @@ export function screenController()
             liProjects[i].addEventListener("click", (e) => {
 
                 setCurrentProject(+e.target.getAttribute("data-index"));
-                updateProjectTitle(currentProject.getTitle());
+                selectProject();
+                updateProjectTitle();
                 updateTasks(currentProject);
             });
         }
@@ -54,34 +55,49 @@ export function screenController()
             parent.appendChild(item);
         });
 
-        selectProject(currentProjectIndex, currentProject.getTitle());
-        updateProjectTitle(currentProject.getTitle());
+        selectProject();
+        updateProjectTitle();
         updateTasks(currentProject);
+    };
+
+    const selectProject = () => {
+
+        //the class added to selected item
+        const selectedClass = "projects-active";
+
+        const projectsList = document.querySelectorAll("#projects li");
+
+        //remove selection from all items
+        projectsList.forEach(project => {
+            removeClasses(project, selectedClass);
+        });
+
+        //add selection to current item
+        addClasses(projectsList[currentProjectIndex], selectedClass)
     }
+
+    const updateProjectTitle = () =>
+{
+        setElementText(document.querySelector("#project-title"), currentProject.getTitle());
+    }
+
+   
 
     return {initialize};
 };
 
-function selectProject(projectIndex)
+function addClasses(element, ...cssClasses)
 {
-    //the class added to selected item
-    const selectedClass = "projects-active";
+    cssClasses.forEach(cssClass => {
 
-    const projectsList = document.querySelectorAll("#projects li");
-
-    //remove selection from all items
-    projectsList.forEach(project => {
-        project.classList.remove(selectedClass);
+        element.classList.add(cssClass);
     });
-
-    //add selection to current item
-    projectsList[projectIndex].classList.add(selectedClass);
-}
+};
 
 function createDomElement(elementTag = "div")
 {   
     return document.createElement(elementTag);
-}
+};
 
 function setElementAttributes(element, ...attributesAndValues)
 {
@@ -90,25 +106,21 @@ function setElementAttributes(element, ...attributesAndValues)
     {
         element.setAttribute(attributesAndValues[i], attributesAndValues[++i]);
     }
-}
+};
 
 function setElementText(element, value)
 {
     element.innerText = value;
-}
+};
 
-function updateProjectTitle(newTitle)
-{
-    setElementText(document.querySelector("#project-title"), newTitle);
-}
 
-function addClasses(element, ...cssClasses)
+function removeClasses(element, ...cssClasses)
 {
     cssClasses.forEach(cssClass => {
 
-        element.classList.add(cssClass);
+        element.classList.remove(cssClass);
     });
-}
+};
 
 function updateTasks(project)
 {
@@ -156,5 +168,5 @@ function updateTasks(project)
             hDate)
 
         parent.appendChild(divTask);
-    }
-}
+    };
+};
