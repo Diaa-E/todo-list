@@ -135,6 +135,13 @@ export function screenController()
             setElementAttributes(btnRemove, "id", "remove-task");
             addClasses(btnRemove, "button-task");
 
+            btnRemove.addEventListener("click", (e) => {
+
+                const selectedTask = +e.target.parentNode.getAttribute("data-index")
+                currentProject.removeTask(selectedTask);
+                updateScreen();
+            });
+
             const btnEdit = createDomElement("button");
             setElementAttributes(btnEdit, "id", "edit-task");
             addClasses(btnEdit, "button-task");
