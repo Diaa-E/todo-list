@@ -2,6 +2,7 @@
 
 import { Project } from "./projects";
 import { Task } from "./tasks";
+import { removeFromCollection } from "./utility";
 import { generateRandomProjects, generateRandomTasks} from "./dev.utility";
 import {
     removeClasses,
@@ -25,6 +26,17 @@ export function screenController()
 
         currentProjectIndex = 0;
         currentProject = projects[currentProjectIndex];
+
+        const btnDeleteProject = document.querySelector("#delete-project");
+        btnDeleteProject.addEventListener('click', (e) => {
+
+            //At least 1 project must be present
+            if (projects.length === 1) return;
+
+            removeFromCollection(currentProjectIndex, projects);
+            setCurrentProject(0);
+            updateScreen();
+        });
 
         updateScreen();
     };
