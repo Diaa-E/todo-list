@@ -299,32 +299,5 @@ export function screenController()
         document.body.appendChild(parent);
     };
 
-    /*<div class="prompt-background">
-        <div class="card">
-            <form class="prompt-form" action="">
-                <legend>Action</legend>
-
-                <label for="taskTitle">Title</label>
-                <input class="prompt-field" id="taskTitle" name="taskTitle" type="text" required>
-
-                <label for="taskDetails">Details</label>
-                <textarea class="prompt-field" name="taskDEtails" id="taskDetails" cols="30" rows="10" ></textarea>
-
-                <label for="taskDate">Due</label>
-                <input class="prompt-field" type="date" name="taskDate" id="taskDate" required>
-
-                <div class="prompt-controls">
-                    <button type="button" class="button button-danger">
-                        <div id="cancel" class="icon icon-button"></div>
-                        Cancel
-                    </button>
-                    <button type="submit" class="button button-valid">
-                        <div id="save" class="icon icon-button"></div>
-                        Save
-                    </button>
-                </div>
-            </form>
-        </div>*/
-
     return {initialize};
 };
