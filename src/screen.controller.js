@@ -51,7 +51,7 @@ export function screenController()
             liProjects[i].addEventListener("click", (e) => {
 
                 setCurrentProject(+e.target.getAttribute("data-index"));
-                
+
                 selectProject();
                 updateProjectTitle();
                 updateTodo();
@@ -160,9 +160,9 @@ export function screenController()
 
             //using a div instead of img eliminates the hassle 
             //of dealing with src and importing images
-            const imgDone = createDomElement("div");
-            addClasses(imgDone, "icon");
-            setElementAttributes(imgDone, "id", "tick");
+            const divDone = createDomElement("div");
+            addClasses(divDone, "icon");
+            setElementAttributes(divDone, "id", "tick");
 
             const pDetails = createDomElement("p");
             addClasses(pDetails, "task-details", "task-details-done");
@@ -174,6 +174,7 @@ export function screenController()
 
             divTask.append(
                 hTitle,
+                divDone,
                 pDetails,
                 hDate)
 
