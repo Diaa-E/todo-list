@@ -145,7 +145,6 @@ export function screenController()
             const btnEdit = createDomElement("button");
             setElementAttributes(btnEdit, "id", "edit-task");
             addClasses(btnEdit, "button-task");
-            setElementAttributes(btnEdit, "data-index", `${i}`);
 
             const pDetails = createDomElement("p");
             addClasses(pDetails, "task-details", "task-details-todo");
