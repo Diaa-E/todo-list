@@ -1,39 +1,66 @@
 "use strict";
 
-export function updateScreen(projects, selectFirst = true)
+import { Project } from "./projects";
+import { Task } from "./tasks";
+import { generateRandomProjects, generateRandomTasks} from "./dev.utility";
+
+export function screenController()
 {
-    let currentProjectIndex = 0;
+    let projects = [];
 
-    if (!selectFirst) currentProjectIndex = +document.querySelector(".projects-active").getAttribute("data-index");
-    
-    const parent = document.querySelector("#projects");
-    parent.innerHTML = "";
+    let currentProjectIndex;
+    let currentProject;
 
-    const listItems = [];
-    
-    for (let i = 0; i < projects.length; i++)
-    {
-        listItems.push(createDomElement("li"));
-        setElementAttributes(listItems[i], "data-index", `${i}`);
-        setElementText(listItems[i], projects[i].getTitle());
+    const initialize = () => {
 
-        listItems[i].addEventListener("click", (e) => {
+        projects = generateRandomProjects(20);
+        generateRandomTasks(projects, 10);
 
-            selectProject(+e.target.getAttribute("data-index"));
-            updateProjectTitle(projects[+e.target.getAttribute("data-index")].getTitle());
-            updateTasks(projects[+e.target.getAttribute("data-index")])
-        });
+        currentProjectIndex = 0;
+        currentProject = projects[currentProjectIndex];
+
+        updateScreen();
     }
 
-    listItems.forEach(item => {
+    const setCurrentProject = (newProjectIndex) => {
 
-        parent.appendChild(item);
-    });
+        currentProjectIndex = newProjectIndex;
+        currentProject = projects[currentProjectIndex];
+    }
 
-    selectProject(currentProjectIndex, projects[currentProjectIndex].getTitle());
-    updateProjectTitle(projects[currentProjectIndex].getTitle());
-    updateTasks(projects[currentProjectIndex]);
-}
+    const updateScreen = () => {
+
+        const parent = document.querySelector("#projects");
+        parent.innerHTML = "";
+
+        const liProjects = [];
+        
+        for (let i = 0; i < projects.length; i++)
+        {
+            liProjects.push(createDomElement("li"));
+            setElementAttributes(liProjects[i], "data-index", `${i}`);
+            setElementText(liProjects[i], projects[i].getTitle());
+
+            liProjects[i].addEventListener("click", (e) => {
+
+                setCurrentProject(+e.target.getAttribute("data-index"));
+                updateProjectTitle(currentProject.getTitle());
+                updateTasks(currentProject);
+            });
+        }
+
+        liProjects.forEach(item => {
+
+            parent.appendChild(item);
+        });
+
+        selectProject(currentProjectIndex, currentProject.getTitle());
+        updateProjectTitle(currentProject.getTitle());
+        updateTasks(currentProject);
+    }
+
+    return {initialize};
+};
 
 function selectProject(projectIndex)
 {
