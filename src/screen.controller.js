@@ -51,9 +51,11 @@ export function screenController()
             liProjects[i].addEventListener("click", (e) => {
 
                 setCurrentProject(+e.target.getAttribute("data-index"));
+                
                 selectProject();
                 updateProjectTitle();
                 updateTodo();
+                updateDone();
             });
         }
 
@@ -65,6 +67,7 @@ export function screenController()
         selectProject();
         updateProjectTitle();
         updateTodo();
+        updateDone();
     };
 
     const selectProject = () => {

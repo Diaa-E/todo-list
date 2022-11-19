@@ -374,7 +374,7 @@ body{
     background-repeat: no-repeat;
 }
 
-#todo, #complete{
+#todo, #done{
     display: flex;
     flex-direction: column;
     gap: 10px;
