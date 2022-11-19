@@ -139,5 +139,44 @@ export function screenController()
         };
     };
 
+    const updateDone = () => {
+
+        const parent = document.querySelector("#done");
+        parent.innerHTML = "";
+
+        for (let i = 0; i < currentProject.getDoneTasks().length; i++)
+        {
+            const divTask = createDomElement("div");
+            addClasses(divTask, "task", "task-done");
+
+            const currentTask = currentProject.getDoneTasks()[i];
+
+            const hTitle = createDomElement("h1");
+            addClasses(hTitle, "task-title", "task-title-done");
+            setElementText(hTitle, currentTask.getTitle());
+
+            //using a div instead of img eliminates the hassle 
+            //of dealing with src and importing images
+            const imgDone = createDomElement("div");
+            addClasses(imgDone, "icon");
+            setElementAttributes(imgDone, "id", "tick");
+
+            const pDetails = createDomElement("p");
+            addClasses(pDetails, "task-details", "task-details-done");
+            setElementText(pDetails, currentTask.getDetails());
+
+            const hDate = createDomElement("h1");
+            addClasses(hDate, "task-date", "task-date-done");
+            setElementText(hDate, currentTask.getDue());
+
+            divTask.append(
+                hTitle,
+                pDetails,
+                hDate)
+
+            parent.appendChild(divTask);
+        };
+    }
+
     return {initialize};
 };
