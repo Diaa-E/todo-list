@@ -101,7 +101,6 @@ body{
     flex-direction: column;
     padding: 10px 30px 30px 30px;
     gap: 20px;
-    min-height: 400px;
     background-color: var(--background-container);
     border-radius: 10px;
     box-shadow: 10px 10px 25px -12px var(--font-dark);
@@ -378,4 +377,14 @@ body{
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+#cancel{
+    background: url("./icons/remove_black.svg");
+    background-size: contain;
+}
+
+#save{
+    background: url("./icons/save.svg");
+    background-size: contain;
 }

@@ -28,7 +28,7 @@ export function screenController()
         currentProject = projects[currentProjectIndex];
 
         const btnDeleteProject = document.querySelector("#delete-project");
-        btnDeleteProject.addEventListener('click', (e) => {
+        btnDeleteProject.addEventListener('click', () => {
 
             //At least 1 project must be present
             if (projects.length === 1) return;
@@ -37,6 +37,12 @@ export function screenController()
             setCurrentProject(0);
             updateScreen();
         });
+
+        const btnAddProject = document.querySelector("#add-project");
+        btnAddProject.addEventListener("click", () => {
+
+            promptForm(true, "New Project");
+        })
 
         updateScreen();
     };
@@ -205,6 +211,120 @@ export function screenController()
             parent.appendChild(divTask);
         };
     }
+
+    const promptForm = (task = false, title = "action") =>{
+
+        const formElements = [];
+        const parent = createDomElement("div");
+        addClasses(parent, "prompt-background");
+
+        const divCard = createDomElement("div");
+        addClasses(divCard, "card");
+
+        const formPrompt = createDomElement("form");
+        addClasses(formPrompt, "prompt-form");
+        setElementAttributes(formPrompt, "action", "");
+
+        const legendAction = createDomElement("legend");
+        setElementText(legendAction, title);
+        formElements.push(legendAction);
+
+        const lblTitle = createDomElement("label");
+        setElementText(lblTitle, "Title");
+        setElementAttributes(lblTitle, "for", "title");
+        formElements.push(lblTitle);
+
+        const txtTitle = createDomElement("input");
+        setElementAttributes(txtTitle, "type", "text", "id", "title", "name", "title", "required", "");
+        addClasses(txtTitle, "prompt-field");
+        formElements.push(txtTitle);
+
+        if (task)
+        {
+            const lblDetails = createDomElement("label");
+            setElementText(lblDetails, "Details");
+            setElementAttributes(lblDetails, "for", "details");
+            formElements.push(lblDetails);
+
+            const areaDetails = createDomElement("textarea");
+            setElementAttributes(areaDetails, "id", "details", "name", "details", "cols", "30", "rows", "10");
+            addClasses(areaDetails, "prompt-field");
+            formElements.push(areaDetails);
+
+            const lblDate = createDomElement("label");
+            setElementText(lblDate, "Due");
+            setElementAttributes(lblDate, "for", "date");
+            formElements.push(lblDate);
+
+            const dateDue = createDomElement("input");
+            setElementAttributes(dateDue, "type", "date", "id", "date", "name", "date", "required", "");
+            addClasses(dateDue, "prompt-field");
+            formElements.push(dateDue);
+        };
+
+        const divControls = createDomElement("div");
+        addClasses(divControls, "prompt-controls");
+
+        const btnCancel = createDomElement("button");
+        addClasses(btnCancel, "button", "button-danger");
+        setElementAttributes(btnCancel, "type", "button");
+        const divCancel = createDomElement("div");
+        addClasses(divCancel, "icon", "icon-button");
+        setElementAttributes(divCancel, "id", "cancel");
+
+        btnCancel.appendChild(divCancel);
+        setElementText(btnCancel, "Cancel");
+
+        const btnSave = createDomElement("button");
+        addClasses(btnSave, "button", "button-valid");
+        setElementAttributes(btnSave, "type", "submit");
+        const divSave = createDomElement("div");
+        addClasses(divSave, "icon", "icon-button");
+        setElementAttributes(divSave, "id", "save");
+
+        btnSave.appendChild(divSave);
+        setElementText(btnSave, "Save");
+
+        divControls.append(btnCancel, btnSave);
+        formElements.push(divControls);
+
+        formElements.forEach(element => {
+
+            formPrompt.appendChild(element);
+        })
+
+        divCard.appendChild(formPrompt);
+        parent.appendChild(divCard);
+
+        document.body.appendChild(parent);
+    };
+
+    /*<div class="prompt-background">
+        <div class="card">
+            <form class="prompt-form" action="">
+                <legend>Action</legend>
+
+                <label for="taskTitle">Title</label>
+                <input class="prompt-field" id="taskTitle" name="taskTitle" type="text" required>
+
+                <label for="taskDetails">Details</label>
+                <textarea class="prompt-field" name="taskDEtails" id="taskDetails" cols="30" rows="10" ></textarea>
+
+                <label for="taskDate">Due</label>
+                <input class="prompt-field" type="date" name="taskDate" id="taskDate" required>
+
+                <div class="prompt-controls">
+                    <button type="button" class="button button-danger">
+                        <div id="cancel" class="icon icon-button"></div>
+                        Cancel
+                    </button>
+                    <button type="submit" class="button button-valid">
+                        <div id="save" class="icon icon-button"></div>
+                        Save
+                    </button>
+                </div>
+            </form>
+        </div>*/
 
     return {initialize};
 };
