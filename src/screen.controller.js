@@ -161,7 +161,7 @@ export function screenController()
             btnEdit.addEventListener("click", (e) => {
 
                 const taskIndex = +e.target.parentNode.getAttribute("data-index");
-                promptForm(+e.target.getAttribute("data-mode"), "Edit Task");
+                promptForm(+e.target.getAttribute("data-mode"), "Edit Task", taskIndex);
                 const formEdit = document.forms["prompt-form"];
                 formEdit.elements["title"].value = currentProject.getPendingTasks()[taskIndex].getTitle();
                 formEdit.elements["details"].value = currentProject.getPendingTasks()[taskIndex].getDetails();
@@ -228,7 +228,7 @@ export function screenController()
         };
     }
 
-    const promptForm = (mode, title = "action") =>{
+    const promptForm = (mode, title = "action", taskIndex = null) =>{
 
         //mode 0 -> add new project
         //mode 1 -> add new task
@@ -263,6 +263,14 @@ export function screenController()
                     const newTaskDue = document.forms["prompt-form"].elements["date"].value;
                     createTask(newTaskTitle, newTaskDetails, newTaskDue);
                     break;
+
+                case 2:
+                    const editedTaskTitle = document.forms["prompt-form"].elements["title"].value;
+                    const editedTaskDetails = document.forms["prompt-form"].elements["details"].value;
+                    const editedTaskDue = document.forms["prompt-form"].elements["date"].value;
+                    editTask(taskIndex, editedTaskTitle, editedTaskDetails, editedTaskDue);
+                    break;
+
             }
             
             closePrompt();
@@ -365,6 +373,15 @@ export function screenController()
         currentProject.addTask(Task(title, details, due));
         updateTodo();
     };
+
+    const editTask = (taskIndex, newTitle, newDetails = "", newDue) =>{
+
+        const currentTask =  currentProject.getPendingTasks()[taskIndex];
+        currentTask.setTitle(newTitle);
+        currentTask.setDetails(newDetails);
+        currentTask.setDue(newDue);
+        updateTodo();
+    }
 
     return {initialize};
 };
