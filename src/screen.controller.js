@@ -39,9 +39,9 @@ export function screenController()
         });
 
         const btnAddProject = document.querySelector("#add-project");
-        btnAddProject.addEventListener("click", () => {
+        btnAddProject.addEventListener("click", (e) => {
 
-            promptForm(true, "New Project");
+            promptForm(+e.target.getAttribute("data-mode"), "New Project");
         })
 
         updateScreen();
@@ -212,8 +212,12 @@ export function screenController()
         };
     }
 
-    const promptForm = (task = false, title = "action") =>{
+    const promptForm = (mode, title = "action") =>{
 
+        //mode 0 -> add new project
+        //mode 1 -> add new task
+        //mode 2 => edit task
+        
         const formElements = [];
         const parent = createDomElement("div");
         setElementAttributes(parent, "id", "prompt");
@@ -240,7 +244,7 @@ export function screenController()
         addClasses(txtTitle, "prompt-field");
         formElements.push(txtTitle);
 
-        if (task)
+        if (mode === 1 || mode === 2)
         {
             const lblDetails = createDomElement("label");
             setElementText(lblDetails, "Details");
