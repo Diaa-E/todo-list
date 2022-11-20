@@ -42,7 +42,13 @@ export function screenController()
         btnAddProject.addEventListener("click", (e) => {
 
             promptForm(+e.target.getAttribute("data-mode"), "New Project");
-        })
+        });
+
+        const btnAddTask = document.querySelector("#new-task");
+        btnAddTask.addEventListener("click", (e) => {
+
+            promptForm(+e.target.getAttribute("data-mode"), "New Task");
+        });
 
         updateScreen();
     };
@@ -149,8 +155,13 @@ export function screenController()
             });
 
             const btnEdit = createDomElement("button");
-            setElementAttributes(btnEdit, "id", "edit-task");
+            setElementAttributes(btnEdit, "id", "edit-task", "data-mode", "2");
             addClasses(btnEdit, "button-task");
+
+            btnEdit.addEventListener("click", (e) => {
+
+                promptForm(+e.target.getAttribute("data-mode"), "Edit Task");
+            });
 
             const pDetails = createDomElement("p");
             addClasses(pDetails, "task-details", "task-details-todo");
@@ -217,7 +228,7 @@ export function screenController()
         //mode 0 -> add new project
         //mode 1 -> add new task
         //mode 2 => edit task
-        
+
         const formElements = [];
         const parent = createDomElement("div");
         setElementAttributes(parent, "id", "prompt");
