@@ -160,7 +160,12 @@ export function screenController()
 
             btnEdit.addEventListener("click", (e) => {
 
+                const taskIndex = +e.target.parentNode.getAttribute("data-index");
                 promptForm(+e.target.getAttribute("data-mode"), "Edit Task");
+                const formEdit = document.forms["prompt-form"];
+                formEdit.elements["title"].value = currentProject.getPendingTasks()[taskIndex].getTitle();
+                formEdit.elements["details"].value = currentProject.getPendingTasks()[taskIndex].getDetails();
+                formEdit.elements["date"].value = currentProject.getPendingTasks()[taskIndex].getDue();
             });
 
             const pDetails = createDomElement("p");
