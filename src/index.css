@@ -33,9 +33,10 @@
     --valid: #8bbc77;
     --valid-hover:#a2c993;;
     --valid-active: #678d58;
-    --warning: #f16872;
-    --warning-hover:#e48d93;
-    --warning-active: #b45a60;
+    --danger: #f16872;
+    --danger-hover:#e48d93;
+    --danger-active: #b45a60;
+    --warning: rgb(218, 184, 71) ;
     --button: #9481ff;
     --button-hover:#b0a4f0;
     --button-active: #6c63a1;
@@ -164,15 +165,15 @@ body{
 }
 
 .button-danger{
-    background-color: var(--warning);
+    background-color: var(--danger);
 }
 
 .button-danger:hover{
-    background-color: var(--warning-hover);
+    background-color: var(--danger-hover);
 }
 
 .button-danger:active{
-    background-color: var(--warning-active);
+    background-color: var(--danger-active);
 }
 
 .project-controls{
@@ -204,6 +205,18 @@ body{
 
 .task-todo{
     background-color: var(--background-task);
+}
+
+.task-high{
+    border-left: 5px var(--danger) solid;
+}
+
+.task-medium{
+    border-left: 5px var(--warning) solid;
+}
+
+.task-low{
+    border-left: 5px var(--valid) solid;
 }
 
 .task-done{

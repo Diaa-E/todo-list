@@ -132,6 +132,10 @@ export function screenController()
             setElementAttributes(btnComplete, "id", "complete-task");
             addClasses(btnComplete, "button-task");
 
+            if (currentTask.getPriority() === 2) addClasses(divTask, "task-high");
+            if (currentTask.getPriority() === 1) addClasses(divTask, "task-medium");
+            if (currentTask.getPriority() === 0) addClasses(divTask, "task-low");
+
             btnComplete.addEventListener("click", (e) => {
 
                 const selectedTask = +e.target.parentNode.getAttribute("data-index")
@@ -319,7 +323,7 @@ export function screenController()
 
             const rangePriority = createDomElement("input");
             setElementAttributes(rangePriority, "id", "priority", "type", "range",
-            "name", "priority", "min", "0", "max", "2", "step", "0.01", "value", "0");
+            "name", "priority", "min", "0", "max", "2", "step", "1", "value", "0");
             formElements.push(rangePriority);
 
         };
