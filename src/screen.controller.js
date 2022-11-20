@@ -245,10 +245,22 @@ export function screenController()
 
             e.preventDefault();
             //get form element contents
-            const newProjectTitle = document.forms["prompt-form"].elements["title"].value;
-            createProject(newProjectTitle);
+            switch (mode) {
+
+                case 0:
+                    const newProjectTitle = document.forms["prompt-form"].elements["title"].value;
+                    createProject(newProjectTitle);
+                    break;
+
+                case 1: 
+                    const newTaskTitle = document.forms["prompt-form"].elements["title"].value;
+                    const newTaskDetails = document.forms["prompt-form"].elements["details"].value;
+                    const newTaskDue = document.forms["prompt-form"].elements["date"].value;
+                    createTask(newTaskTitle, newTaskDetails, newTaskDue);
+                    break;
+            }
+            
             closePrompt();
-            updateScreen();
         });
 
         const legendAction = createDomElement("legend");
@@ -335,12 +347,19 @@ export function screenController()
         const body = document.querySelector("body");
         const divPrompt = document.querySelector("#prompt");
         body.removeChild(divPrompt);
-    }
+    };
 
     const createProject = (title) =>{
 
         projects.push(Project(title));
-    }
+        updateScreen();
+    };
+
+    const createTask = (title, details = "", due) => {
+
+        currentProject.addTask(Task(title, details, due));
+        updateTodo();
+    };
 
     return {initialize};
 };
