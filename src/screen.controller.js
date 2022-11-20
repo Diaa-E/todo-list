@@ -311,6 +311,17 @@ export function screenController()
             setElementAttributes(dateDue, "type", "date", "id", "date", "name", "date", "required", "");
             addClasses(dateDue, "prompt-field");
             formElements.push(dateDue);
+
+            const lblPriority = createDomElement("label");
+            setElementText(lblPriority, "Priority");
+            setElementAttributes(lblPriority, "for", "priority");
+            formElements.push(lblPriority);
+
+            const rangePriority = createDomElement("input");
+            setElementAttributes(rangePriority, "id", "priority", "type", "range",
+            "name", "priority", "min", "0", "max", "2", "step", "0.01", "value", "0");
+            formElements.push(rangePriority);
+
         };
 
         const divControls = createDomElement("div");
