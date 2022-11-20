@@ -216,6 +216,7 @@ export function screenController()
 
         const formElements = [];
         const parent = createDomElement("div");
+        setElementAttributes(parent, "id", "prompt");
         addClasses(parent, "prompt-background");
 
         const divCard = createDomElement("div");
@@ -272,6 +273,11 @@ export function screenController()
         addClasses(divCancel, "icon", "icon-button");
         setElementAttributes(divCancel, "id", "cancel");
 
+        btnCancel.addEventListener("click", () => {
+
+            closePrompt();
+        });
+
         btnCancel.appendChild(divCancel);
         btnCancel.innerHTML += "Cancel"; //Avoid removing the appended div
 
@@ -298,6 +304,13 @@ export function screenController()
 
         document.body.appendChild(parent);
     };
+
+    const closePrompt = () => {
+
+        const body = document.querySelector("body");
+        const divPrompt = document.querySelector("#prompt");
+        body.removeChild(divPrompt);
+    }
 
     return {initialize};
 };
