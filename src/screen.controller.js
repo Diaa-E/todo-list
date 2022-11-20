@@ -239,7 +239,17 @@ export function screenController()
 
         const formPrompt = createDomElement("form");
         addClasses(formPrompt, "prompt-form");
-        setElementAttributes(formPrompt, "action", "");
+        setElementAttributes(formPrompt, "action", "", "id", "prompt-form");
+
+        formPrompt.addEventListener("submit", (e) => {
+
+            e.preventDefault();
+            //get form element contents
+            const newProjectTitle = document.forms["prompt-form"].elements["title"].value;
+            createProject(newProjectTitle);
+            closePrompt();
+            updateScreen();
+        });
 
         const legendAction = createDomElement("legend");
         setElementText(legendAction, title);
@@ -325,6 +335,11 @@ export function screenController()
         const body = document.querySelector("body");
         const divPrompt = document.querySelector("#prompt");
         body.removeChild(divPrompt);
+    }
+
+    const createProject = (title) =>{
+
+        projects.push(Project(title));
     }
 
     return {initialize};
