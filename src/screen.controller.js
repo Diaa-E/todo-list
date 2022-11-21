@@ -4,6 +4,7 @@ import { Project } from "./projects";
 import { Task } from "./tasks";
 import { removeFromCollection } from "./utility";
 import { generateRandomProjects, generateRandomTasks} from "./dev.utility";
+import { saveToLocalStorage } from "./storage";
 import {
     removeClasses,
     addClasses, 
@@ -15,7 +16,6 @@ import {
 export function screenController()
 {
     let projects = [];
-
     let currentProjectIndex;
     let currentProject;
 
@@ -51,6 +51,7 @@ export function screenController()
         });
 
         updateScreen();
+        saveToLocalStorage(projects);
     };
 
     const setCurrentProject = (newProjectIndex) => {
