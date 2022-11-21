@@ -170,6 +170,7 @@ export function screenController()
                 formEdit.elements["title"].value = currentProject.getPendingTasks()[taskIndex].getTitle();
                 formEdit.elements["details"].value = currentProject.getPendingTasks()[taskIndex].getDetails();
                 formEdit.elements["date"].value = currentProject.getPendingTasks()[taskIndex].getDue();
+                formEdit.elements["priority"].value = currentProject.getPendingTasks()[taskIndex].getPriority();
             });
 
             const pDetails = createDomElement("p");
@@ -265,7 +266,8 @@ export function screenController()
                     const newTaskTitle = document.forms["prompt-form"].elements["title"].value;
                     const newTaskDetails = document.forms["prompt-form"].elements["details"].value;
                     const newTaskDue = document.forms["prompt-form"].elements["date"].value;
-                    createTask(newTaskTitle, newTaskDetails, newTaskDue);
+                    const newTaskPriority = document.forms["prompt-form"].elements["priority"].value;
+                    createTask(newTaskTitle, newTaskDetails, newTaskDue, +newTaskPriority);
                     break;
 
                 case 2:
@@ -383,9 +385,9 @@ export function screenController()
         updateScreen();
     };
 
-    const createTask = (title, details = "", due) => {
+    const createTask = (title, details = "", due, priority) => {
 
-        currentProject.addTask(Task(title, details, due));
+        currentProject.addTask(Task(title, details, due, priority));
         updateTodo();
     };
 
