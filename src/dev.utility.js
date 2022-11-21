@@ -2,6 +2,7 @@
 
 import { Project } from "./projects";
 import { Task } from "./tasks";
+import {format} from "date-fns";
 
 //for development
 function generateRandomText(maxLength)
@@ -36,9 +37,23 @@ export function generateRandomTasks(projects, maxTasks)
     {    
         for (let i = 0; i < Math.ceil(Math.random() * maxTasks); i++)
         {
-            projects[j].addTask((Task(generateRandomText(10), generateRandomText(20), generateRandomText(10), Math.round(Math.random()*2))));
+            projects[j].addTask((
+                Task(generateRandomText(10), 
+                generateRandomText(20), 
+                generateRandomDate(), 
+                Math.round(Math.random()*2))));
         }
 
         projects[j].completeTask(projects[j].getPendingTasks()[0], 0);
     }
+}
+
+function generateRandomDate()
+{
+    const day = Math.floor(Math.random() * 25);
+    const month = Math.floor(Math.random() * 11);
+    const year = Math.floor(Math.random() * 10 + 2022);
+    let date = format(new Date(year, month, day), 'yyyy-MM-dd');
+
+    return date;
 }
