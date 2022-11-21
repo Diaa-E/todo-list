@@ -254,28 +254,29 @@ export function screenController()
         formPrompt.addEventListener("submit", (e) => {
 
             e.preventDefault();
+            const taskForm = document.forms["prompt-form"];
             //get form element contents
             switch (mode) {
 
                 case 0:
-                    const newProjectTitle = document.forms["prompt-form"].elements["title"].value;
+                    const newProjectTitle = taskForm.elements["title"].value;
                     createProject(newProjectTitle);
                     break;
 
                 case 1: 
-                    const newTaskTitle = document.forms["prompt-form"].elements["title"].value;
-                    const newTaskDetails = document.forms["prompt-form"].elements["details"].value;
-                    const newTaskDue = document.forms["prompt-form"].elements["date"].value;
-                    const newTaskPriority = document.forms["prompt-form"].elements["priority"].value;
-                    createTask(newTaskTitle, newTaskDetails, newTaskDue, +newTaskPriority);
+                    const newTaskTitle = taskForm.elements["title"].value;
+                    const newTaskDetails = taskForm.elements["details"].value;
+                    const newTaskDue = taskForm.elements["date"].value;
+                    const newTaskPriority = +taskForm.elements["priority"].value;
+                    createTask(newTaskTitle, newTaskDetails, newTaskDue, newTaskPriority);
                     break;
 
                 case 2:
-                    const editedTaskTitle = document.forms["prompt-form"].elements["title"].value;
-                    const editedTaskDetails = document.forms["prompt-form"].elements["details"].value;
-                    const editedTaskDue = document.forms["prompt-form"].elements["date"].value;
-                    const editedTaskPriority = document.forms["prompt-form"].elements["priority"].value;
-                    editTask(taskIndex, editedTaskTitle, editedTaskDetails, editedTaskDue, +editedTaskPriority);
+                    const editedTaskTitle = taskForm.elements["title"].value;
+                    const editedTaskDetails = taskForm.elements["details"].value;
+                    const editedTaskDue = taskForm.elements["date"].value;
+                    const editedTaskPriority = +taskForm.elements["priority"].value;
+                    editTask(taskIndex, editedTaskTitle, editedTaskDetails, editedTaskDue, editedTaskPriority);
                     break;
 
             }
