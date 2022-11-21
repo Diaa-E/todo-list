@@ -93,6 +93,7 @@ export function screenController()
         updateProjectTitle();
         updateTodo();
         updateDone();
+        saveToLocalStorage(projects);
     };
 
     const selectProject = () => {
