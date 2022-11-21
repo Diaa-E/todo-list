@@ -274,7 +274,8 @@ export function screenController()
                     const editedTaskTitle = document.forms["prompt-form"].elements["title"].value;
                     const editedTaskDetails = document.forms["prompt-form"].elements["details"].value;
                     const editedTaskDue = document.forms["prompt-form"].elements["date"].value;
-                    editTask(taskIndex, editedTaskTitle, editedTaskDetails, editedTaskDue);
+                    const editedTaskPriority = document.forms["prompt-form"].elements["priority"].value;
+                    editTask(taskIndex, editedTaskTitle, editedTaskDetails, editedTaskDue, +editedTaskPriority);
                     break;
 
             }
@@ -391,12 +392,13 @@ export function screenController()
         updateTodo();
     };
 
-    const editTask = (taskIndex, newTitle, newDetails = "", newDue) =>{
+    const editTask = (taskIndex, newTitle, newDetails = "", newDue, newPriority) =>{
 
         const currentTask =  currentProject.getPendingTasks()[taskIndex];
         currentTask.setTitle(newTitle);
         currentTask.setDetails(newDetails);
         currentTask.setDue(newDue);
+        currentTask.setPriority(newPriority);
         updateTodo();
     }
 
