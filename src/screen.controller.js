@@ -191,6 +191,7 @@ export function screenController()
 
             parent.appendChild(divTask);
         };
+        saveToLocalStorage(projects);
     };
 
     const updateDone = () => {
@@ -231,6 +232,7 @@ export function screenController()
 
             parent.appendChild(divTask);
         };
+        saveToLocalStorage(projects);
     }
 
     const promptForm = (mode, title = "action", taskIndex = null) =>{
