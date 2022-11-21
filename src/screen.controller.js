@@ -3,8 +3,7 @@
 import { Project } from "./projects";
 import { Task } from "./tasks";
 import { removeFromCollection } from "./utility";
-import { generateRandomProjects, generateRandomTasks} from "./dev.utility";
-import { saveToLocalStorage } from "./storage";
+import { saveToLocalStorage, loadFromLocalStorage } from "./storage";
 import {
     removeClasses,
     addClasses, 
@@ -21,9 +20,8 @@ export function screenController()
 
     const initialize = () => {
 
-        projects = generateRandomProjects(20);
-        generateRandomTasks(projects, 10);
-
+        projects = loadFromLocalStorage();
+        
         currentProjectIndex = 0;
         currentProject = projects[currentProjectIndex];
 

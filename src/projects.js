@@ -43,6 +43,11 @@ export function Project(name)
         removeFromCollection(taskIndex, todo);
     };
 
+    //used only for loading from local storage
+    const addDone = (task) => {
+        addToCollection(task, done);
+    }
+
     const removeTask = (taskIndex) => {
 
         removeFromCollection(taskIndex, todo);
@@ -55,6 +60,7 @@ export function Project(name)
         setTitle,
         addTask,
         completeTask,
-        removeTask
+        removeTask,
+        addDone
     };
 };

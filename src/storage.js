@@ -1,5 +1,8 @@
 "use strict";
 
+import { Project } from "./projects";
+import { Task } from "./tasks";
+import { generateRandomProjects, generateRandomTasks } from "./dev.utility";
 //Storage 
 //Unload all data into an object and store it in the localstorage
 export function saveToLocalStorage(projects)
@@ -39,6 +42,51 @@ export function saveToLocalStorage(projects)
     });
 
     localStorage.setItem("storedProjects", JSON.stringify(projectsToStore));
+}
+
+//projects are restored by recreating project objects using the saved parameters
+export function loadFromLocalStorage()
+{
+    if (!storageAvailable("localStorage")) return;
+
+    const projects = [];
+
+    if (localStorage.getItem("storedProjects"))
+    {
+        const storageProjects = JSON.parse(localStorage.getItem("storedProjects"));
+
+        storageProjects.forEach(project => {
+
+            const currentProject = Project(project["title"]);
+
+            project["todo"].forEach(task => {
+                currentProject.addTask(
+                    Task(task["title"],
+                    task["details"],
+                    task["due"],
+                    task["priority"])
+                )
+            });
+
+            project["done"].forEach(task => {
+                currentProject.addDone(
+                    Task(task["title"],
+                    task["details"],
+                    task["due"],
+                    task["priority"])
+                )
+            });
+
+            projects.push(currentProject);
+        });
+    }
+    else
+    {
+        projects = generateRandomProjects(20);
+        generateRandomTasks(projects, 10);
+    }
+
+    return projects;
 }
 
 function storageAvailable(type) {
